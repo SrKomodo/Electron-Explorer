@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Electron Explorer</title>
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="css/material-icons.css">
+  </head>
+  <body>
+    <div id="titleBar"></div>
+    <a href="#"><div class="material-icons menu" id="min-btn">remove</div></a>
+    <a href="#"><div class="material-icons menu" id="max-btn">arrow_drop_up</div></a>
+    <a href="#"><div class="material-icons menu" id="close-btn">close</div></a>
+    <a href="#"><span class="material-icons" id="back">keyboard_return</span></a>
+    <input id="path" type="text" name="path" placeholder="Path">
+    <div id="bookmarks"></div>
+    <div id="files"></div>
+
+    <script type="text/javascript">window.$ = window.jQuery = require(__dirname+'/js/jquery-3.1.1.min.js');</script>
+    <script src="js/script.js" charset="utf-8"></script>
+  </body>
+</html>

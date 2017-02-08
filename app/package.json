@@ -1,0 +1,20 @@
+{
+  "name": "electron-explorer",
+  "version": "0.1.0",
+  "description": "A file manager built with Electron for extra customization",
+  "main": "main.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "electron": "1.6.0"
+  },
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SrKomodo/Electron-Explorer.git"
+  }
+}

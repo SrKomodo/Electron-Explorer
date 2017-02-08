@@ -1,0 +1,112 @@
+body {
+  color: #aaa;
+  font-family: Verdana;
+  margin: 0;
+  position:fixed;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  right:0px;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+#titleBar {
+  -webkit-app-region: drag;
+  background: #232323;
+  height: 25px;
+  width: calc(100% - 75px);
+  float: left;
+}
+.menu {
+  background: #232323;
+  font-size: 25px;
+  line-height: 25px;
+  float: left;
+  height: 25px;
+  width: 25px;
+  transition: background .1s;
+}
+.menu:hover {
+  background: #444;
+}
+
+::-webkit-scrollbar {
+  background: #444;
+}
+::-webkit-scrollbar-track {
+  background: #444;
+}
+::-webkit-scrollbar-thumb {
+  background: #555;
+}
+::-webkit-scrollbar-button {
+  background: #555;
+}
+
+#back {
+  float: left;
+  background-color: #343434;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 25px;
+  vertical-align: middle;
+  border-right: 1px solid #444;
+  border-bottom: 1px solid #444;
+}
+#path {
+  float: left;
+  width: calc(100% - 31px);
+  height: 25px;
+  border: 0;
+  padding: 0;
+  padding-left: 5px;
+  color: #aaa;
+  background-color: #343434;
+  outline: none;
+  font-size: 20px;
+  z-index: 3;
+  border-bottom: 1px solid #444
+}
+#bookmarks {
+  background: #232323;
+  height: calc(100% - 26px);
+  width: 20%;
+  float: left;
+  z-index: 2;
+  border-right: 1px solid #444;
+  overflow: auto;
+}
+#files {
+  float: left;
+  width: calc(80% - 1px);
+  height: calc(100% - 26px);
+  background-color: #333333;
+  z-index: 1;
+  overflow: auto;
+}
+
+.fileListElement {
+  font-size: 16px;
+  line-height: 16px;
+  height: 16px;
+  vertical-align: middle;
+  background: #333333;
+  padding: 2px;
+  transition: background .4s;
+}
+.odd {
+  background: #373737;
+}
+.fileListElement:hover {
+  background: #444
+}
+.error {
+  background: #844;
+}
+.error:hover {
+  background: #a44;
+}
