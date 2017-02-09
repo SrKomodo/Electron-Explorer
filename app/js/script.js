@@ -5,6 +5,7 @@ const {shell} = require('electron');
 const ws = require('windows-shortcuts');
 const remote = require('electron').remote;
 const octicons = require('octicons');
+const colors = require( "./colors.json" );
 
 $(function(){
   $("#path").val(os.homedir()); // Make first directory the home directory
@@ -38,14 +39,25 @@ function indexDirectory(directory) {
               });
             } else
             if (stats.isFile()) { // If item is a file
-              let extension = file.split(".").slice(-1)[0].toLowerCase();
-              if (extension === "lnk") {
+              let extension = path.extname(file).toLowerCase();
+              if (extension === ".lnk") {
                 ws.query(path.join(directory,file),function(error,options){
                   if (error) console.error(error);
                   else {
-                    item.click(function(){
-                      $("#path").val(options.expanded.target);
-                      $("#path").change();
+                    fs.stat(options.expanded.target,function(err,stats){
+                      if (err) console.error(err);
+                      if (stats.isDirectory()) {
+                        item.prepend(`${octicons["file-symlink-directory"].toSVG({ "width": 16, "height": 16 })}`).css("fill","#e5e589");
+                        item.click(function(){
+                          $("#path").val(options.expanded.target);
+                          $("#path").change();
+                        });
+                      } else {
+                        item.click(function(){
+                          shell.openItem(options.expanded.target);
+                        });
+                        item.prepend(`${octicons["file-symlink-file"].toSVG({ "width": 16, "height": 16 })}`).css("fill","#aaaaaa");
+                      }
                     });
                   }
                 });
@@ -53,8 +65,14 @@ function indexDirectory(directory) {
                 item.click(function(){
                   shell.openItem(path.join(directory,file));
                 });
+                for (let config in colors) {
+                  if (config === extension) {
+                    item.prepend(octicons[colors[config].icon].toSVG({ "width": 16, "height": 16 })).css("fill",colors[config].color); // Add file icon
+                    return;
+                  }
+                }
+                item.prepend(`${octicons.file.toSVG({ "width": 16, "height": 16 })}`); // Add file icon
               }
-              item.prepend(`${octicons.file.toSVG({ "class": "file", "width": 16, "height": 16 })}`); // Add file icon
             }
             if (index % 2 === 1) { // If index is odd
               item.addClass("odd"); // Make odd

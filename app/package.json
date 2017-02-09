@@ -1,5 +1,6 @@
 {
   "name": "electron-explorer",
+  "version": "0.3.0",
   "description": "A file manager built with Electron for extra customization",
   "main": "main.js",
   "dependencies": {

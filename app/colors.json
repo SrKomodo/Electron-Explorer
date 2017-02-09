@@ -1,0 +1,14 @@
+{
+  ".png": {
+    "color": "#5889dd",
+    "icon": "file-media"
+  },
+  ".pdf": {
+    "color": "#dd5866",
+    "icon": "file-pdf"
+  },
+  ".exe": {
+    "color": "#aaaaaa",
+    "icon": "file-binary"
+  }
+}
