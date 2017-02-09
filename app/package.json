@@ -1,12 +1,13 @@
 {
   "name": "electron-explorer",
-  "version": "0.1.0",
   "description": "A file manager built with Electron for extra customization",
   "main": "main.js",
   "dependencies": {
   },
   "devDependencies": {
-    "electron": "1.6.0"
+    "electron": "1.6.0",
+    "windows-shortcuts": "0.1.4",
+    "octicons": "5.0.1"
   },
   "scripts": {
     "start": "electron main.js"
