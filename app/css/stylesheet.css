@@ -10,10 +10,6 @@ body {
   right:0px;
   overflow: auto;
 }
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
 
 #titleBar {
   -webkit-app-region: drag;
@@ -23,6 +19,7 @@ a {
   float: left;
 }
 .menu {
+  cursor: pointer;
   background: #232323;
   float: left;
   height: 32px;
@@ -50,6 +47,7 @@ a {
 }
 
 #back {
+  cursor: pointer;
   float: left;
   background-color: #343434;
   width: 32px;
@@ -95,18 +93,23 @@ a {
 }
 
 .fileListElement {
+  cursor: pointer;
   overflow: hidden;
   white-space: nowrap;
   font-size: 16px;
-  height: 18px;
-  background: #333333;
+  line-height: 22px;
+  height: 22px;
+  vertical-align: middle;
   transition: background .2s;
 }
-.fileListElement svg {
-  margin-top: 1px;
+.fileListElement:nth-child(odd) {
+  background: #333333;
 }
-.odd {
+.fileListElement:nth-child(even) {
   background: #373737;
+}
+.fileListElement svg {
+  margin-top: 3px;
 }
 .fileListElement:hover {
   background: #444

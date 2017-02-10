@@ -1,14 +1,109 @@
 {
-  ".png": {
+  "compressed": {
+    "matches": [
+      ".7z",
+      ".gz",
+      ".rar",
+      ".tar",
+      ".zip"
+    ],
+    "color": "#eab667",
+    "icon": "file-zip"
+  },
+  "image": {
+    "matches": [
+      ".bpm",
+      ".dds",
+      ".exif",
+      ".gif",
+      ".icns",
+      ".ico",
+      ".jpg",
+      ".jfif",
+      ".jpeg",
+      ".pdn",
+      ".raw",
+      ".tga",
+      ".png",
+      ".xfc"
+    ],
     "color": "#5889dd",
     "icon": "file-media"
   },
-  ".pdf": {
+  "text": {
+    "matches": [
+      ".gdoc",
+      ".doc",
+      ".docm",
+      ".docx",
+      ".log",
+      ".odt",
+      ".txt"
+    ],
+    "color": "#b7edb6",
+    "icon": "file-text"
+  },
+  "pdf": {
+    "matches": [
+      ".pdf"
+    ],
     "color": "#dd5866",
     "icon": "file-pdf"
   },
-  ".exe": {
+  "binaries": {
+    "matches": [
+      ".exe",
+      ".dll"
+    ],
     "color": "#aaaaaa",
     "icon": "file-binary"
+  },
+  "code": {
+    "matches": [
+      ".ahk",
+      ".bat",
+      ".cmd",
+      ".cofee",
+      ".js",
+      ".lua",
+      ".php",
+      ".pl",
+      ".py",
+      ".r",
+      ".rb",
+      ".vbs"
+    ],
+    "color": "#667fff",
+    "icon": "file-code"
+  },
+  "music": {
+    "matches": [
+      ".wav",
+      ".flac",
+      ".tta",
+      ".mp1",
+      ".mp2",
+      ".mp3",
+      ".aac",
+      ".mid",
+      ".midi"
+    ],
+    "color": "#6e40c9",
+    "icon": "unmute"
+  },
+  "video": {
+    "matches": [
+      ".mp4",
+      ".avi",
+      ".flv",
+      ".m4v",
+      ".mpeg",
+      ".ogg",
+      ".wmv",
+      ".mkv",
+      ".webm"
+    ],
+    "color": "#409bc9",
+    "icon": "device-camera-video"
   }
 }
