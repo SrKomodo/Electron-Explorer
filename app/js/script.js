@@ -9,11 +9,28 @@ const colors = require( "./colors.json" );
 
 var pathHistory = []; // This variable stores the history for the "back" button
 
-$(function(){                   // On startup
+$(() => {                   // On startup
   $("#path").val(os.homedir()); // Make first directory the home directory
   $("#path").change();          // And load directory
-});
+  loadBookMarks();              // You dont really have to be a genius to guess what this does
 
+  // These 5 lines set the intial icons for most buttons
+  $("#min-btn").html(octicons['dash'].toSVG({ "width": 32, "height": 32}));
+  $("#max-btn").html(octicons['chevron-up'].toSVG({ "width": 32, "height": 32}));
+  $("#close-btn").html(octicons['x'].toSVG({ "width": 32, "height": 32}));
+  $("#back").html(octicons["arrow-left"].toSVG({ "width": 32, "height": 32 }));
+  $("#bookmark").html(octicons["pin"].toSVG({ "width": 16, "height": 16 }));
+
+  let window = remote.getCurrentWindow();
+
+  window.on("maximize", () => { // When the window is maximized then change the icon to minimize
+    $("#max-btn").html(octicons['chevron-down'].toSVG({ "width": 32, "height": 32}));
+  });
+
+  window.on("unmaximize", () => { // The same as the last thingie but the opposite
+    $("#max-btn").html(octicons['chevron-up'].toSVG({ "width": 32, "height": 32}));
+  });
+});
 
 function indexDirectory(directory) { // Guess what this does!
 
@@ -41,7 +58,7 @@ function indexDirectory(directory) { // Guess what this does!
                 })}
               `); // Add folder icon
 
-              item.click(function(){                    // On click
+              item.click(() => {                    // On click
                 $("#path").val(`${directory}/${file}`); // Go to directory
                 $("#path").change();                    // And reload
               });
@@ -74,16 +91,16 @@ function indexDirectory(directory) { // Guess what this does!
                             "width": 16,
                             "height": 16
                           })}
-                        `).css("fill","#e5e589"); // Then add a "folder shorcut" icon
+                        `).addClass("folder"); // Then add a "folder shorcut" icon
 
-                        item.click(function(){ // And on click go to the target folder
+                        item.click(() => { // And on click go to the target folder
                           $("#path").val(options.expanded.target);
                           $("#path").change();
                         });
 
                       } else { // If the target is a file
 
-                        item.click(function(){ // Then open the file on click
+                        item.click(() => { // Then open the file on click
                           shell.openItem(options.expanded.target);
                         });
 
@@ -100,7 +117,7 @@ function indexDirectory(directory) { // Guess what this does!
                 });
               } else { // If it isnt a shorcut or directory
 
-                item.click(function(){  // On click open the file
+                item.click(() => {  // On click open the file
                   shell.openItem(path.join(directory,file));
                 });
 
@@ -120,15 +137,15 @@ function indexDirectory(directory) { // Guess what this does!
                   })}
                 `); // Add a default file icon
               }
-            } // This
+            }  // This
           }  // Is
-        }); // A
-      }    // Lot
-    }     // Of
-  });    // Indentation
+        });// A
+      }  // Lot
+    }  // Of
+  });// Indentation
 }
 
-$("#path").change(function(){ // When the path changes
+$("#path").change(() => { // When the path changes
 
   $("#path").val( // Make sure the separators are correct
     path.normalize($("#path").val()
@@ -142,7 +159,7 @@ $("#path").change(function(){ // When the path changes
 
 });
 
-$("#back").click(function(){ // When you click the back button
+$("#back").click(() => { // When you click the back button
 
   if (pathHistory.length <= 1) { // If the history is basicly empty
     return;                      // Then do nothing
@@ -154,4 +171,48 @@ $("#back").click(function(){ // When you click the back button
     $("#path").change();                               // And trigger a change in the path
   }
 
+});
+
+$("#min-btn").click(function () {         // When I click the minimize button
+  let window = remote.getCurrentWindow(); // Guess what happens?
+  window.minimize();                      // It minimizes!
+});                                       // WHOA TECHNOLOGY
+
+$("#close-btn").click(function () {       // And what happens when I click the close button ?
+  let window = remote.getCurrentWindow(); // GUESS WHAT
+  window.close();                         // IT CLOSES
+});                                       // OH MY GOD !!!!!!!1!111!!!!oneoneone
+
+$("#max-btn").click(function () {         // Ok this atleast actually does something
+  let window = remote.getCurrentWindow(); // When you click the "resize" thing
+  if (!window.isMaximized()) {            // If the window isnt maximized
+    window.maximize();                    // It maximizes
+  } else {                                // And if it is
+    window.unmaximize();                  // Then unmaximize
+  }
+});
+
+function loadBookMarks() {
+  let bookmarks = JSON.parse(fs.readFileSync(__dirname + '\\bookmarks.json', 'utf8'));
+  $("#bookmarks").html("");
+  for (let bookmark in bookmarks) {
+    $("#bookmarks").append(`<div class="bookmarkItem"><span>${bookmark}</span></div>`);
+    let item = $("#bookmarks").children().last();
+    item.prepend(octicons.bookmark.toSVG({ "width": 16, "height": 16 }));
+    item.click(() => {
+      $("#path").val(bookmarks[bookmark]);
+      $("#path").change();
+    });
+  }
+}
+
+$("#bookmark").click(() => {
+  let bookmarks = JSON.parse(fs.readFileSync(__dirname + '\\bookmarks.json', 'utf8'));
+  let name = $("#path").val().split(path.sep).slice(-1)[0];
+  if (bookmarks[name]) {
+    delete bookmarks[name];
+  } else {
+    bookmarks[name] = $("#path").val();
+  }
+  fs.writeFile(__dirname + '\\bookmarks.json', JSON.stringify(bookmarks), (err) => {if(err) console.error(err);loadBookMarks();});
 });
