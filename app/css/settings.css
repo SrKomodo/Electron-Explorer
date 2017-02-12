@@ -1,0 +1,27 @@
+#settings {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  margin-left: 10vw;
+  margin-top: 10vh;
+  box-shadow: 0 0 100px black;
+  overflow: hidden;
+  background: var(--backgroundColor);
+}
+#settingsContent {
+  width: 100%;
+  height: calc(100% - 32px);
+  padding: 10px;
+}
+#closeSettings {
+  width: 32px;
+  height: 32px;
+}
+#settingsContent > div {
+  float: left;
+  height: 100%;
+  width: calc(100% / 3);
+}
+#settingsContent p, h4 {
+  margin: 0;
+}

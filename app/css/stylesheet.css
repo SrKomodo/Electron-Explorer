@@ -1,59 +1,80 @@
+:root {
+  --backgroundColor:  #232323;
+  --backgroundColor2: #333333;
+  --highlightColor:   #444;
+  --borderColor:      #444;
+  --textColor:        #aaa;
+  --oddFileColor:     #373737;
+  --folderColor:      #e5e589;
+}
 body {
-  color: #aaa;
-  fill: #aaa;
+  background: var(--backgroundColor);
+  color: var(--textColor);
+  fill: var(--textColor);
   font-family: Verdana;
   margin: 0;
   position: fixed;
   width: 100%;
   height: 100%;
-  overflow: auto;
+}
+
+.button {
+  transition: background .2s;
+  cursor: pointer;
+}
+.button:hover {
+  background: var(--highlightColor) !important;
+}
+
+#settingsButton {
+  padding-left: 8px;
+  padding-top: 8px;
+  width: 24px;
+  height: 24px;
+  float: left;
 }
 
 #titleBar {
   -webkit-app-region: drag;
-  background: #232323;
+  background: var(--backgroundColor);
   height: 32px;
-  width: calc(100% - 96px);
+  width: calc(100% - 128px);
   float: left;
 }
 .menu {
-  cursor: pointer;
-  background: #232323;
+  background: var(--backgroundColor);
   float: left;
   height: 32px;
   width: 32px;
-  transition: background .1s;
-}
-.menu:hover {
-  background: #444;
 }
 
 ::-webkit-scrollbar {
-  background: #444;
+  background: var(--backgroundColor);
 }
 ::-webkit-scrollbar-track {
-  background: #444;
+  background: var(--backgroundColor);
 }
 ::-webkit-scrollbar-thumb {
-  background: #555;
+  background: var(--backgroundColor2);
 }
 ::-webkit-scrollbar-button {
-  background: #666;
+  background: var(--highlightColor);
 }
 ::-webkit-scrollbar-corner {
-  background: #444;
+  background: var(--backgroundColor);
 }
 
 #back {
-  cursor: pointer;
   float: left;
-  background-color: #343434;
+  background-color: var(--backgroundColor2);
   width: 32px;
   height: 32px;
-  border-right: 1px solid #444;
-  border-bottom: 1px solid #444;
-  border-top: 1px solid #444;
+  border-right: 1px solid var(--borderColor);
+  border-bottom: 1px solid var(--borderColor);
+  border-top: 1px solid var(--borderColor);
+  ;
 }
+
 #path {
   float: left;
   width: calc(100% - (66px + 5px));
@@ -61,87 +82,81 @@ body {
   border: 0;
   padding: 0;
   padding-left: 5px;
-  color: #aaa;
-  background-color: #343434;
+  color: var(--textColor);
+  background-color: var(--backgroundColor2);
   outline: none;
   font-size: 20px;
   z-index: 3;
-  border-bottom: 1px solid #444;
-  border-top: 1px solid #444;
+  border-bottom: 1px solid var(--borderColor);
+  border-top: 1px solid var(--borderColor);
 }
 #bookmark {
-  cursor: pointer;
   float: left;
-  background-color: #343434;
+  background-color: var(--backgroundColor2);
   width: 24px;
   height: 24px;
-  border-left: 1px solid #444;
-  border-bottom: 1px solid #444;
-  border-top: 1px solid #444;
+  border-left: 1px solid var(--borderColor);
+  border-bottom: 1px solid var(--borderColor);
+  border-top: 1px solid var(--borderColor);
   padding-left: 8px;
   padding-top: 8px;
+  ;
 }
+
 #bookmarks {
-  background: #232323;
+  background: var(--backgroundColor);
   height: calc(100% - 66px);
   width: 20%;
   float: left;
   z-index: 2;
-  border-right: 1px solid #444;
+  border-right: 1px solid var(--borderColor);
   overflow: auto;
 }
 #files {
   float: left;
   width: calc(80% - 1px);
   height: calc(100% - 66px);
-  background-color: #333333;
+  background-color: var(--backgroundColor2);
   z-index: 1;
   overflow: auto;
 }
 
 .fileListElement {
-  cursor: pointer;
   overflow: hidden;
   white-space: nowrap;
   font-size: 16px;
   line-height: 22px;
   height: 22px;
-  transition: background .2s;
+  ;
 }
 .fileListElement * {
   vertical-align: middle;
   float: left;
 }
 .fileListElement:nth-child(odd) {
-  background: #333333;
+  background: var(--backgroundColor2);
 }
 .fileListElement:nth-child(even) {
-  background: #373737;
+  background: var(--oddFileColor);
 }
 .fileListElement svg {
   margin-top: 3px;
 }
-.fileListElement:hover {
-  background: #444
-}
+
 .folder {
-  fill: #e5e589;
+  fill: var(--folderColor);
 }
 
 .bookmarkItem {
-  cursor: pointer;
   width: 100%;
   height: 22px;
   line-height: 22px;
   vertical-align: middle;
   font-size: 17px;
   overflow: hidden;
-  border-bottom: 1px solid #444;
-  transition: background .3s;
+  border-bottom: 1px solid var(--borderColor);
 }
-.bookmarkItem:hover {
-  background: #444;
-}
+
 .bookmarkItem svg {
   margin-left: 3px;
   margin-top: 3px;

@@ -14,12 +14,14 @@ $(() => {                   // On startup
   $("#path").change();          // And load directory
   loadBookMarks();              // You dont really have to be a genius to guess what this does
 
-  // These 5 lines set the intial icons for most buttons
+  // These 6 lines set the intial icons for most buttons
   $("#min-btn").html(octicons['dash'].toSVG({ "width": 32, "height": 32}));
   $("#max-btn").html(octicons['chevron-up'].toSVG({ "width": 32, "height": 32}));
   $("#close-btn").html(octicons['x'].toSVG({ "width": 32, "height": 32}));
   $("#back").html(octicons["arrow-left"].toSVG({ "width": 32, "height": 32 }));
   $("#bookmark").html(octicons["pin"].toSVG({ "width": 16, "height": 16 }));
+  $("#settingsButton").html(octicons["settings"].toSVG({ "width": 16, "height":16 }));
+  $("#closeSettings").html(octicons['x'].toSVG({ "width": 32, "height": 32}));
 
   let window = remote.getCurrentWindow();
 
@@ -30,6 +32,9 @@ $(() => {                   // On startup
   window.on("unmaximize", () => { // The same as the last thingie but the opposite
     $("#max-btn").html(octicons['chevron-up'].toSVG({ "width": 32, "height": 32}));
   });
+
+  /*let root = $(":root")[0].style;
+  root.setProperty(`--backgroundColor`, "#ff0000");*/
 });
 
 function indexDirectory(directory) { // Guess what this does!
@@ -46,7 +51,7 @@ function indexDirectory(directory) { // Guess what this does!
           if(err) console.error(err); // Log errors
           else {
 
-            $("#files").append(`<div class="fileListElement">${file}</div>`); // Add item to list
+            $("#files").append(`<div class="fileListElement button">${file}</div>`); // Add item to list
             let item = $("#files").children().last();                         // Store item in variable for ease of use
 
             if (stats.isDirectory()) { // If the item is a folder
@@ -193,7 +198,7 @@ $("#max-btn").click(function () {         // Ok this atleast actually does somet
 });
 
 function loadBookMarks() {
-  let bookmarks = JSON.parse(fs.readFileSync(__dirname + '\\bookmarks.json', 'utf8'));
+  let bookmarks = JSON.parse(fs.readFileSync(path.join(__dirname,'bookmarks.json'), 'utf8'));
   $("#bookmarks").html("");
   for (let bookmark in bookmarks) {
     $("#bookmarks").append(`<div class="bookmarkItem"><span>${bookmark}</span></div>`);
@@ -207,12 +212,16 @@ function loadBookMarks() {
 }
 
 $("#bookmark").click(() => {
-  let bookmarks = JSON.parse(fs.readFileSync(__dirname + '\\bookmarks.json', 'utf8'));
+  let bookmarks = JSON.parse(fs.readFileSync(path.join(__dirname,'bookmarks.json'), 'utf8'));
   let name = $("#path").val().split(path.sep).slice(-1)[0];
   if (bookmarks[name]) {
     delete bookmarks[name];
   } else {
     bookmarks[name] = $("#path").val();
   }
-  fs.writeFile(__dirname + '\\bookmarks.json', JSON.stringify(bookmarks), (err) => {if(err) console.error(err);loadBookMarks();});
+  fs.writeFile(path.join(__dirname,'bookmarks.json'), JSON.stringify(bookmarks), (err) => {if(err) console.error(err);loadBookMarks();});
+});
+
+$("#settingsButton,#closeSettings").click(() => {
+  $("#settings").toggle(400);
 });
