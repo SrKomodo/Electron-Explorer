@@ -6,6 +6,7 @@
   --textColor:        #aaa;
   --oddFileColor:     #373737;
   --folderColor:      #e5e589;
+  --errorColor:       #f55;
 }
 body {
   background: var(--backgroundColor);

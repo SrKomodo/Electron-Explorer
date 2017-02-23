@@ -1,7 +1,7 @@
 {
   "productName": "Electron Explorer",
   "name": "electron-explorer",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A file manager built with Electron for extra customization",
   "main": "main.js",
   "dependencies": {
@@ -9,7 +9,7 @@
     "octicons": "5.0.1"
   },
   "devDependencies": {
-    "electron": "1.6.0"
+    "electron": "1.6.1"
   },
   "scripts": {
     "start": "electron main.js"

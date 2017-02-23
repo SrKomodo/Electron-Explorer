@@ -46,7 +46,7 @@ function indexDirectory(directory) { // Guess what this does!
     if(err) console.error(err);           // And log any errors
 
     else {
-      for (let file of files) {                              // Iterate over every files
+      for (let file of files) {                              // Iterate over every file
         fs.stat(path.join(directory,file), (err, stats) => { // And find out stuff about every file
           if(err) console.error(err); // Log errors
           else {
@@ -64,7 +64,7 @@ function indexDirectory(directory) { // Guess what this does!
               `); // Add folder icon
 
               item.click(() => {                    // On click
-                $("#path").val(`${directory}/${file}`); // Go to directory
+                $("#path").val(`${directory}${path.sep}${file}`); // Go to directory
                 $("#path").change();                    // And reload
               });
             } else
@@ -86,7 +86,7 @@ function indexDirectory(directory) { // Guess what this does!
                             "width": 16,
                             "height": 16
                           })}
-                        `).css("fill","#f55"); // Show a "broken link" icon
+                        `).css("fill","var(--errorColor)"); // Show a "broken link" icon
                         console.error(err);    // And log the error
 
                       } else
@@ -114,7 +114,7 @@ function indexDirectory(directory) { // Guess what this does!
                             "width": 16,
                             "height": 16
                           })}
-                        `).css("fill","#aaaaaa"); // And add a shorcut icon
+                        `); // And add a shorcut icon
 
                       }
                     });
@@ -152,11 +152,7 @@ function indexDirectory(directory) { // Guess what this does!
 
 $("#path").change(() => { // When the path changes
 
-  $("#path").val( // Make sure the separators are correct
-    path.normalize($("#path").val()
-    .split(/[\\/]/)
-    .join(path.sep))
-  );
+  $("#path").val( path.normalize( $("#path").val() ) ); // Normalize the filepath so its all nice and gud
 
   pathHistory.push($("#path").val()); // Add the path to the directory
   $("#files").html("");               // Then clear the file list
@@ -166,13 +162,13 @@ $("#path").change(() => { // When the path changes
 
 $("#back").click(() => { // When you click the back button
 
-  if (pathHistory.length <= 1) { // If the history is basicly empty
+  if (pathHistory.length <= 1) { // If the history is empty
     return;                      // Then do nothing
   }
   else {                                               // If there is stuff on the history
     pathHistory.pop();                                 // Remove the last element
     $("#path").val(pathHistory[pathHistory.length-1]); // Set the path to the one before
-    pathHistory.pop();                                 // Remove this path (because its added again later)
+    pathHistory.pop();                                 // Remove this path (because its added again later (top notch programming i know))
     $("#path").change();                               // And trigger a change in the path
   }
 
@@ -196,6 +192,8 @@ $("#max-btn").click(function () {         // Ok this atleast actually does somet
     window.unmaximize();                  // Then unmaximize
   }
 });
+
+// Yay undocumented stuff!
 
 function loadBookMarks() {
   let bookmarks = JSON.parse(fs.readFileSync(path.join(__dirname,'bookmarks.json'), 'utf8'));
