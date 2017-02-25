@@ -13,6 +13,7 @@ $(() => {                   // On startup
   $("#path").val(os.homedir()); // Make first directory the home directory
   $("#path").change();          // And load directory
   loadBookMarks();              // You dont really have to be a genius to guess what this does
+  loadColors();
 
   // These 6 lines set the intial icons for most buttons
   $("#min-btn").html(octicons['dash'].toSVG({ "width": 32, "height": 32}));
@@ -33,8 +34,6 @@ $(() => {                   // On startup
     $("#max-btn").html(octicons['chevron-up'].toSVG({ "width": 32, "height": 32}));
   });
 
-  /*let root = $(":root")[0].style;
-  root.setProperty(`--backgroundColor`, "#ff0000");*/
 });
 
 function indexDirectory(directory) { // Guess what this does!
@@ -209,6 +208,15 @@ function loadBookMarks() {
   }
 }
 
+function loadColors() {
+  let colorSettings = JSON.parse(fs.readFileSync(path.join(__dirname,'settings.json'), 'utf8'));
+  let root = $(":root")[0].style;
+  for (let color in colorSettings) {
+    root.setProperty(`--${color}`, colorSettings[color]);
+    $(`#${color}`).val(colorSettings[color]);
+  }
+}
+
 $("#bookmark").click(() => {
   let bookmarks = JSON.parse(fs.readFileSync(path.join(__dirname,'bookmarks.json'), 'utf8'));
   let name = $("#path").val().split(path.sep).slice(-1)[0];
@@ -222,4 +230,12 @@ $("#bookmark").click(() => {
 
 $("#settingsButton,#closeSettings").click(() => {
   $("#settings").toggle(400);
+});
+
+$("#saveColorSettings").click(() => {
+  let colorSettings = JSON.parse(fs.readFileSync(path.join(__dirname,'settings.json'), 'utf8'));
+  for (let color in colorSettings) {
+    colorSettings[color] = $(`#${color}`).val();
+  }
+  fs.writeFile(path.join(__dirname,'settings.json'), JSON.stringify(colorSettings), (err) => {if(err) console.error(err);loadColors();});
 });

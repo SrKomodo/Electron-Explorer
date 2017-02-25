@@ -19,6 +19,18 @@ body {
   height: 100%;
 }
 
+input[type="color"] {
+  background-color : var(--backgroundColor);
+  padding: none;
+  margin: none;
+  border: none;
+}
+#saveSettings {
+  width: 80px;
+  padding: 2px;
+  background-color: var(--backgroundColor2);
+}
+
 .button {
   transition: background .2s;
   cursor: pointer;
