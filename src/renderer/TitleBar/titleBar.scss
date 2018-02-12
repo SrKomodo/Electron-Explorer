@@ -1,0 +1,20 @@
+.titleBar {
+  display: flex;
+  justify-content: flex-end;
+  background: #333;
+  -webkit-app-region: drag;
+  height: 30px;
+}
+
+.controls {
+  display: flex;
+  -webkit-app-region: no-drag;
+
+  img {
+    padding: 10px 18px;
+
+    &:hover {
+      background: #444;
+    }
+  }
+}

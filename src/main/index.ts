@@ -10,7 +10,7 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 let mainWindow: BrowserWindow | null;
 
 function createMainWindow() {
-  const window = new BrowserWindow();
+  const window = new BrowserWindow({frame: false});
 
   if (isDevelopment) {
     window.webContents.openDevTools();
