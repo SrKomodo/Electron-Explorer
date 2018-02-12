@@ -1,5 +1,6 @@
 import React from "react";
 
+import FileList from "../FileList/fileList";
 import TitleBar from "../TitleBar/titlebar";
 
 class App extends React.Component {
@@ -9,7 +10,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <TitleBar/>
+      <>
+        <TitleBar/>
+        <FileList dir="C:\"/>
+      </>
     );
   }
 }

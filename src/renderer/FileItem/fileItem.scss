@@ -1,0 +1,7 @@
+.file {
+  padding: 3px;
+ 
+  &:nth-child(odd) {
+    background: #292929;
+  } 
+}
