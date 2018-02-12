@@ -1,6 +1,9 @@
 {
   "name": "electron-explorer",
   "version": "0.0.0",
+  "description": "A file explorer and manager made with Electron",
+  "repository": "https://github.com/SrKomodo/Electron-Explorer.git",
+  "author": "SrKomodo <komodosr@gmail.com>",
   "license": "GPL-3.0",
   "scripts": {
     "dev": "electron-webpack dev",
@@ -9,7 +12,16 @@
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
   "build": {
+    "productName": "Electron Explorer",
     "appId": "com.srkomodo.electronexplorer"
+  },
+  "electronWebpack": {
+    "renderer": {
+      "webpackConfig": "./webpack.renderer.additions.js"
+    }
+  },
+  "resolutions": {
+    "webpack-sources": "1.0.1"
   },
   "dependencies": {
     "@types/react": "^16.0.36",
