@@ -3,7 +3,23 @@ import "./stylesheet.scss";
 import React from "react";
 import ReactDom from "react-dom";
 
-import App from "./App/app";
+import FileList from "./FileList/fileList";
+import TitleBar from "./TitleBar/titlebar";
+
+class App extends React.Component {
+  constructor(props: {}) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <>
+        <TitleBar/>
+        <FileList dir="C:\"/>
+      </>
+    );
+  }
+}
 
 ReactDom.render(
   <App/>,

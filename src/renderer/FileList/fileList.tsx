@@ -3,7 +3,7 @@ import React from "react";
 import { readdir } from "fs";
 import { join } from "path";
 
-import FileItem from "../FileItem/fileItem";
+import FileItem from "./FileItem/fileItem";
 
 interface Props {
   dir: string;
