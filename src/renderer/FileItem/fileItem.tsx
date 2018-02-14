@@ -1,8 +1,8 @@
-import * as styles from "./fileItem.scss";
-
 import React from "react";
 
 import { shell } from "electron";
+
+import * as styles from "./fileItem.scss";
 
 interface Props {
   path: string;

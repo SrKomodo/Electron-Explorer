@@ -2,9 +2,20 @@
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none;
+}
+
 body {
   background: #232323;
   color: #aaa;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 0;
+}
+
+.root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
