@@ -1,12 +1,13 @@
 @import "~@/variables.scss";
 
 .urlBar {
+  height: $urlBarHeight;
+  padding: 2px;
+
+  border: 1px solid #444;
+  background: #303030;
+  border-width: 1px 0;
+
   color: inherit;
   font: inherit;
-
-  background: #303030;
-  height: $urlBarHeight;
-  border: 1px solid #444;
-  border-width: 1px 0;
-  padding: 2px;
 }

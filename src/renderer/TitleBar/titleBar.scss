@@ -1,9 +1,9 @@
 @import "~@/variables.scss";
 
 .titleBar {
+  height: $titleBarHeight;
   -webkit-app-region: drag;
   background: #333;
-  height: $titleBarHeight;
 }
 
 .controls {

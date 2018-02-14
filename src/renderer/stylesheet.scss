@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -7,15 +9,15 @@
 }
 
 body {
+  margin: 0;
   background: #232323;
   color: #aaa;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin: 0;
 }
 
 .root {
-  height: 100vh;
   display: flex;
-  flex-direction: column;
   overflow: hidden;
+  height: 100vh;
+  flex-direction: column;
 }
