@@ -39,12 +39,16 @@ class App extends React.Component<{}, State> {
     this.setState({ dir: newDir, inputDir: newDir });
   }
 
+  handleOpenFolder = (path: string) => {
+    this.setState({ dir: path, inputDir: path });
+  }
+
   render() {
     return (
       <div className={styles.root}>
         <TitleBar/>
         <UrlBar dir={this.state.inputDir} handleChange={this.handleChange}/>
-        <FileList dir={this.state.dir}/>
+        <FileList dir={this.state.dir} handleOpenFolder={this.handleOpenFolder}/>
       </div>
     );
   }

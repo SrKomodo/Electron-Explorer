@@ -1,8 +1,17 @@
 .file {
   position: relative;
   padding: 3px;
+  cursor: pointer;
 
   &:nth-child(odd) {
     background: #292929;
+  }
+
+  &:hover {
+    background: #333;
+  }
+
+  &.focused {
+    background: #404040;
   }
 }

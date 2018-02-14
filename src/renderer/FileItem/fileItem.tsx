@@ -1,11 +1,12 @@
 import React from "react";
 
-import { shell } from "electron";
-
 import * as styles from "./fileItem.scss";
 
 interface Props {
   path: string;
+  focused: boolean;
+  handleSelect: (path: string) => any;
+  handleOpen: (path: string) => any;
 }
 
 class FileItem extends React.Component<Props> {
@@ -14,12 +15,20 @@ class FileItem extends React.Component<Props> {
   }
 
   handleClick = () => {
-    shell.openItem(this.props.path);
+    this.props.handleSelect(this.props.path);
+  }
+
+  handleDoubleClick = () => {
+    this.props.handleOpen(this.props.path);
   }
 
   render() {
     return (
-      <div className={styles.file} onClick={this.handleClick}>
+      <div
+        className={styles.file + (this.props.focused ? " " + styles.focused : "")}
+        onClick={this.handleClick}
+        onDoubleClick={this.handleDoubleClick}
+      >
         {this.props.path}
       </div>
     );
