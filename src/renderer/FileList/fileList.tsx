@@ -10,7 +10,7 @@ import FileItem from "../FileItem/fileItem";
 
 interface Props {
   dir: string;
-  handleOpenFolder: (path: string) => any;
+  handleFolderChange: (path: string) => any;
 }
 
 interface State {
@@ -32,7 +32,13 @@ class FileList extends React.Component<Props, State> {
     if (!statSync(path).isDirectory()) {
       shell.openItem(path);
     } else {
-      this.props.handleOpenFolder(path);
+      this.props.handleFolderChange(path);
+    }
+  }
+
+  handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.keyCode === 8) {
+      this.props.handleFolderChange(join(this.props.dir, ".."));
     }
   }
 
@@ -51,7 +57,7 @@ class FileList extends React.Component<Props, State> {
     });
 
     return (
-      <div className={styles.fileList}>
+      <div tabIndex={-1} onKeyDown={this.handleKeyDown} className={styles.fileList}>
         <div className={styles.holder}>
           {elements}
         </div>

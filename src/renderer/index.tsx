@@ -39,7 +39,7 @@ class App extends React.Component<{}, State> {
     this.setState({ dir: newDir, inputDir: newDir });
   }
 
-  handleOpenFolder = (path: string) => {
+  handleFolderChange = (path: string) => {
     this.setState({ dir: path, inputDir: path });
   }
 
@@ -48,7 +48,7 @@ class App extends React.Component<{}, State> {
       <div className={styles.root}>
         <TitleBar/>
         <UrlBar dir={this.state.inputDir} handleChange={this.handleChange}/>
-        <FileList dir={this.state.dir} handleOpenFolder={this.handleOpenFolder}/>
+        <FileList dir={this.state.dir} handleFolderChange={this.handleFolderChange}/>
       </div>
     );
   }
