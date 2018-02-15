@@ -8,6 +8,18 @@
   outline: none;
 }
 
+::-webkit-scrollbar {
+  width: 17px;
+}
+
+::-webkit-scrollbar-track {
+  background: #333;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444;
+}
+
 body {
   margin: 0;
   background: #232323;

@@ -1,6 +1,9 @@
 .file {
+  overflow: hidden;
   padding: 3px;
   cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   &:nth-child(odd) {
     background: #292929;
