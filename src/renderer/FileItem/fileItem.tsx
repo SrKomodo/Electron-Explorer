@@ -1,5 +1,7 @@
 import React from "react";
 
+import { basename } from "path";
+
 import * as styles from "./fileItem.scss";
 
 interface Props {
@@ -29,7 +31,7 @@ class FileItem extends React.Component<Props> {
         onClick={this.handleClick}
         onDoubleClick={this.handleDoubleClick}
       >
-        {this.props.path}
+        {basename(this.props.path)}
       </div>
     );
   }
